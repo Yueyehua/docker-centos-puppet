@@ -11,11 +11,13 @@ GEM_PATH="/tmp/verifier/gems:${GEM_PATH}"
 RUN \
   rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm && \
   yum -y install \
+    curl \
     puppet \
     redhat-lsb \
     ruby \
     rubygems \
     rubygems-puppet-lint \
+    tar \
     sudo && \
   yum clean all;
 
