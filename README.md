@@ -15,9 +15,9 @@ for test purpose.
 ```text
 docker pull yueyehua/centos-puppet
 docker run \
-  -d \                                           # daemonize
-  --privileged \                                 # for systemd
-  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \          # for systemd
+  -d \                                          # daemonize
+  --privileged \                                # for systemd
+  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \         # for systemd
   --name puppet \                               # container name
   -h puppet \                                   # hostname
   yueyehua/centos-puppet
