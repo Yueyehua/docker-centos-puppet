@@ -12,7 +12,7 @@ RUN \
   rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm && \
   yum -y install \
     curl \
-    puppet \
+    epel-release \
     redhat-lsb \
     ruby \
     rubygems \
@@ -26,6 +26,7 @@ ARG \
 
 # Install gems
 RUN \
+  gem install $GEM_OPTS puppet --version 4.10.12 && \
   gem install $GEM_OPTS busser --version 0.7.1 && \
   gem install $GEM_OPTS busser-serverspec --version 0.5.10 && \
   gem install $GEM_OPTS net-ssh --version 4.2.0 && \
