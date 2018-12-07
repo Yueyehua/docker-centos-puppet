@@ -2,6 +2,13 @@ FROM centos:7
 MAINTAINER Richard Delaplace "rdelaplace@yueyehua.net"
 LABEL version="1.0.0"
 
+ENV \
+  BUSSER_ROOT="/tmp/verifier" \
+  GEM_HOME="/tmp/verifier/gems" \
+  GEM_CACHE="/tmp/verifier/gems/cache" \
+  GEM_PATH="/tmp/verifier/gems:${GEM_PATH}" \
+  PATH="$PATH:/tmp/verifier/gems/bin"
+
 # Install puppet with lint tools
 RUN \
   rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm && \
@@ -30,10 +37,3 @@ RUN \
   gem install $GEM_OPTS serverspec --version 2.41.3 && \
   gem install $GEM_OPTS librarian-puppet --version 3.0.0 && \
   gem install $GEM_OPTS webmock --version 3.4.2;
-
-ENV \
-  BUSSER_ROOT="/tmp/verifier" \
-  GEM_HOME="/tmp/verifier/gems" \
-  GEM_CACHE="/tmp/verifier/gems/cache" \
-  GEM_PATH="/tmp/verifier/gems:${GEM_PATH}" \
-  PATH="$PATH:/tmp/verifier/gems/bin"
