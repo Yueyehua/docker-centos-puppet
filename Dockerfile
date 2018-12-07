@@ -2,10 +2,12 @@ FROM centos:7
 MAINTAINER Richard Delaplace "rdelaplace@yueyehua.net"
 LABEL version="1.0.0"
 
-ENV BUSSER_ROOT="/tmp/verifier" \
-    GEM_HOME="/tmp/verifier/gems" \
-    GEM_CACHE="/tmp/verifier/gems/cache" \
-GEM_PATH="/tmp/verifier/gems:${GEM_PATH}"
+ENV \
+  BUSSER_ROOT="/tmp/verifier" \
+  GEM_HOME="/tmp/verifier/gems" \
+  GEM_CACHE="/tmp/verifier/gems/cache" \
+  GEM_PATH="/tmp/verifier/gems:${GEM_PATH}" \
+  PATH="$PATH:/tmp/verifier/gems/bin/"
 
 # Install puppet with lint tools
 RUN \
