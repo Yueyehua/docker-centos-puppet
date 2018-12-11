@@ -6,8 +6,7 @@ ENV \
   BUSSER_ROOT="/tmp/verifier" \
   GEM_HOME="/tmp/verifier/gems" \
   GEM_CACHE="/tmp/verifier/gems/cache" \
-  GEM_PATH="/tmp/verifier/gems:${GEM_PATH}" \
-  PATH="$PATH:/tmp/verifier/gems/bin"
+  GEM_PATH="/tmp/verifier/gems:${GEM_PATH}"
 
 # Install puppet with lint tools
 RUN \
@@ -24,10 +23,17 @@ RUN \
   yum clean all;
 
 ARG \
-  GEM_OPTS='-q --no-rdoc --no-ri --no-format-executable --no-user-install'
+  GEM_OPTS=' \
+    -q \
+    --bindir /tmp/verifier/bin \
+    --no-rdoc \
+    --no-ri \
+    --no-format-executable \
+    --no-user-install'
 
 # Install gems
 RUN \
+  mkdir -p /tmp/verifier/bin && \
   gem install $GEM_OPTS puppet --version 4.10.12 && \
   gem install $GEM_OPTS busser --version 0.7.1 && \
   gem install $GEM_OPTS busser-serverspec --version 0.5.10 && \
